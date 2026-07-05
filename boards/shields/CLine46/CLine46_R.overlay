@@ -72,8 +72,8 @@
 
 
     scroller {
-        layers = <3>;
-        input-processors = 
+        layers = <5>;
+        input-processors =
             // <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
             // <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       //Y軸反転
