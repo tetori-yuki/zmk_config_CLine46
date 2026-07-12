@@ -39,7 +39,7 @@
         };
 
         select_current_line {
-            bindings = <&select_current_line>;m
+            bindings = <&select_current_line>;
             key-positions = <32 33>;
             timeout-ms = <50>;
         };
