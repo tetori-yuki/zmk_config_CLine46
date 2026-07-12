@@ -20,20 +20,32 @@
             key-positions = <0 12>;
         };
 
-        combo_left_click {
+        combo_left_click_lefthand {
             bindings = <&mkp MB1>;
             key-positions = <14 15>;
             timeout-ms = <40>;
         };
 
-        combo_right_click {
+        combo_left_click_righthand {
+            bindings = <&mkp MB1>;
+            key-positions = <20 31>;
+            timeout-ms = <40>;
+        };
+
+        combo_right_click_lefthand {
             bindings = <&mkp MB2>;
             key-positions = <15 16>;
             timeout-ms = <40>;
         };
 
+        combo_right_click_righthand {
+            bindings = <&mkp MB2>;
+            key-positions = <20 21>;
+            timeout-ms = <40>;
+        };
+
         copy_cursor_to_end {
-            bindings = <&copy_cursor_to_end>;
+            bindings = <&kp LS(END)>;
             key-positions = <30 31>;
             timeout-ms = <50>;
         };
@@ -53,24 +65,6 @@
             label = "TO_LAYER_0";
         };
 
-        copy_cursor_to_end: copy_cursor_to_end {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            tap-ms = <10>;
-            bindings
-                = <&macro_press &kp LCTRL &kp LSHIFT>
-                , <&macro_tap &kp END>
-                , <&macro_release &kp LCTRL &kp LSHIFT>
-
-                , <&macro_wait_time 50>
-                , <&macro_press &kp LCTRL>
-                , <&macro_tap &kp C>
-                , <&macro_release &kp LCTRL>
-                ;
-            label = "COPY_CURSOR_TO_END";
-        };
-
         select_current_line: select_current_line {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -79,9 +73,7 @@
             bindings
                 = <&kp HOME>
                 , <&macro_wait_time 10>
-                , <&macro_press &kp LSHIFT>
-                , <&macro_tap &kp END>
-                , <&macro_release &kp LSHIFT>
+                , <&kp LS(END)>
                 ;
             label = "SELECT_CURRENT_LINE";
         };
