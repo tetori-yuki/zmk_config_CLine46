@@ -29,11 +29,14 @@
         scale     = <1>;
         scale-div = <8>;
 
+        start     = <28>;         // 慣性スクロールが開始する勢いの閾値
+        move      = <56>;          // 慣性スクロールが開始するスクロール長さの閾値
+
         // オプション: Shiftを押している間だけ出力軸を反転
         // swap-mod  = <(MOD_LSFT|MOD_RSFT)>;
 
         // オプション: 右GUI（Winキー等）を押している間だけ両軸フリー（2Dスクロール）
-        unlock-mod = <MOD_RGUI>;
+        unlock-mod = <RALT>;
     };
 };
 
