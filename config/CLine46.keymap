@@ -15,14 +15,33 @@
     combos {
         compatible = "zmk,combos";
 
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <11 12>;
-        };
-
         shift_tab {
             bindings = <&kp LS(TAB)>;
-            key-positions = <12 13>;
+            key-positions = <0 12>;
+        };
+
+        combo_left_click {
+            bindings = <&mkp MB1>;
+            key-positions = <14 15>;
+            timeout-ms = <40>;m
+        };
+
+        combo_right_click {
+            bindings = <&mkp MB2>;
+            key-positions = <15 16>;
+            timeout-ms = <40>;
+        };
+
+        copy_cursor_to_end {
+            bindings = <&copy_cursor_to_end>;
+            key-positions = <30 31>;
+            timeout-ms = <50>;
+        };
+
+        select_current_line {
+            bindings = <&select_current_line>;m
+            key-positions = <32 33>;
+            timeout-ms = <50>;
         };
     };
 
@@ -32,6 +51,39 @@
             #binding-cells = <1>;
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
+        };
+
+        copy_cursor_to_end: copy_cursor_to_end {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings
+                = <&macro_press &kp LCTRL &kp LSHIFT>
+                , <&macro_tap &kp END>
+                , <&macro_release &kp LCTRL &kp LSHIFT>
+
+                , <&macro_wait_time 50>
+                , <&macro_press &kp LCTRL>
+                , <&macro_tap &kp C>
+                , <&macro_release &kp LCTRL>
+                ;
+            label = "COPY_CURSOR_TO_END";
+        };
+
+        select_current_line: select_current_line {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings
+                = <&kp HOME>
+                , <&macro_wait_time 10>
+                , <&macro_press &kp LSHIFT>
+                , <&macro_tap &kp END>
+                , <&macro_release &kp LSHIFT>
+                ;
+            label = "SELECT_CURRENT_LINE";
         };
     };
 
