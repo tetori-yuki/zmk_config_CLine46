@@ -3,6 +3,7 @@
 #include <input/processors.dtsi>
 #include <input/processors/runtime-input-processor.dtsi>
 #include <behaviors/battery_history_request.dtsi>
+#include <dt-bindings/zmk/modifiers.h>
 
 &default_transform {
     col-offset = <6>;
@@ -14,6 +15,25 @@
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
+    };
+
+    // 慣性スクロールのノード定義
+    scroll_inertia_v: scroll_inertia_v {
+        compatible = "zmk,input-processor-scroll-inertia";
+        #input-processor-cells = <0>;
+
+        axis      = <1>;          // 1 = Y軸のみ（縦スクロールに制限）
+        layer     = <6>;          // スクロールレイヤー番号と一致させる
+
+        // 後段の zip_scroll_scaler の値（1 8）と一致させる
+        scale     = <1>;
+        scale-div = <8>;
+
+        // オプション: Shiftを押している間だけ出力軸を反転
+        // swap-mod  = <(MOD_LSFT|MOD_RSFT)>;
+
+        // オプション: 右GUI（Winキー等）を押している間だけ両軸フリー（2Dスクロール）
+        unlock-mod = <MOD_RGUI>;
     };
 };
 
@@ -78,6 +98,9 @@
             // <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,       //Y軸反転
             <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
+
+            // 慣性スクロールはスクロール量の倍率調整や軸の反転を行う前に適用したほうがよい（精度のため）
+            <&scroll_inertia_v>,                                 //慣性スクロール
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
             //<&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,   //スクロールのY軸反転
             <&zip_scroll_scaler 1 8>;                           //スクロール量を1/8倍
