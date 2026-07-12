@@ -23,7 +23,7 @@
         combo_left_click {
             bindings = <&mkp MB1>;
             key-positions = <14 15>;
-            timeout-ms = <40>;m
+            timeout-ms = <40>;
         };
 
         combo_right_click {
