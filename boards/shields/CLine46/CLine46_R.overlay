@@ -25,12 +25,13 @@
         axis      = <1>;          // 1 = Y軸のみ（縦スクロールに制限）
         layer     = <6>;          // スクロールレイヤー番号と一致させる
 
-        // 後段の zip_scroll_scaler の値（1 8）と一致させる
-        scale     = <1>;
-        scale-div = <8>;
+        // 後段の zip_scroll_scaler の値と一致させる
+        scale     = <4>;
+        scale-div = <675>;
 
-        start     = <28>;         // 慣性スクロールが開始する勢いの閾値
-        move      = <56>;          // 慣性スクロールが開始するスクロール長さの閾値
+        start     = <20>;         // 慣性スクロールが開始する勢いの閾値
+        move      = <40>;         // 慣性スクロールが開始するスクロール長さの閾値
+        stop      = <5>;          // 慣性スクロールが停止する速度の閾値
 
         // オプション: Shiftを押している間だけ出力軸を反転
         // swap-mod  = <(MOD_LSFT|MOD_RSFT)>;
@@ -106,6 +107,6 @@
             <&scroll_inertia_v>,                                 //慣性スクロール
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
             //<&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,   //スクロールのY軸反転
-            <&zip_scroll_scaler 1 8>;                           //スクロール量を1/8倍
+            <&zip_scroll_scaler 4 675>;                           //スクロール量を1/8倍
     };
 };
