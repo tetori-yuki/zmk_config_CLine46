@@ -25,3 +25,10 @@ include:
    shield: CLine46_L rgbled_adapter
  - board: seeeduino_xiao_ble
    shield: settings_reset
+ # トラックボールフリーズ調査用のデバッグビルド（右手側のみ）
+ # USB CDC ACM でログを出す。Studio の USB-UART snippet とは CDC ACM が衝突しうるので外している（Studio は BLE 経由なら使える）
+ - board: seeeduino_xiao_ble
+   shield: CLine46_R rgbled_adapter
+   snippet: zmk-usb-logging
+   cmake-args: -DCONFIG_PMW3610_LOG_LEVEL_DBG=y -DCONFIG_LOG_BUFFER_SIZE=16384
+   artifact-name: CLine46_R_debug_logging
