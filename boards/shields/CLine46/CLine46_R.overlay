@@ -78,6 +78,7 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&xiao_d 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         cpi = <600>;
+        force-awake;   // REST モードに落とさない（キー入力後のトラックボール無反応の検証用）
         //swap-xy;
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
